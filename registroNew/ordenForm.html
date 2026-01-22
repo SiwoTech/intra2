@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de Orden</title>
+    <link rel="stylesheet" href="../css/stylesNew.css">
+    <link rel="stylesheet" href="../css/stylesCreateOrder.css">
+    
+    <script src="../js/scriptsCrearOrden.js?v=20260115" defer></script>
+    <link rel="shortcut icon" href="../images/favicon.ico?crc=25332213"/>
+</head>
+<body>
+    <header class="finisher-header header" >
+        <div class="header_image_container">
+        <div class="header__title">
+            <img class="svg" id="u123202" src="../images/LogoOrange.png" width="126" height="49" alt="" data-mu-svgfallback="images/pasted%20svg%20330792x129_poster_.png?crc=3851218457">
+            
+        <div class="header_data_container">
+            <div class="user-info">
+                <p class="username">Usuario: <span id="user"></span></p>
+                <p class="affiliate">Afiliado a: <span id="franq"></span></p>
+                <p class="category">Cat: <span id="cat"></span></p>
+                <p class="date" id="fecha"></p>
+            </div>
+        </div>
+        </div>
+        <img src="../images/baner800.jpg" class="bebeOrange" alt="Logo">
+    </div>
+</header>
+<main><center>
+    <div id="franqTitle" class="franqTitle"></div>
+
+    <div class="stepContainer popin-shadow">
+        <div class="ContainerStep1 popout-shadow">
+        <h2>Paso 1 - Ingresa los datos del Cliente:</h2>
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" placeholder="Ingrese su nombre completo" required maxlength="50" autocomplete="name">
+
+            <label for="telefono">Teléfono:</label>
+			<div style="display: flex; gap: 10px; align-items: center;">
+				<input type="tel" id="telefono" placeholder="Ej: +52 123 456 7890" required maxlength="20" autocomplete="tel" style="flex: 1;">
+				<button type="button" class="btn-search-client" onclick="searchClientByPhone()" title="Buscar cliente por teléfono">
+					<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg>
+					Buscar
+				</button>
+			</div>
+
+            <label for="correo">Correo (opcional):</label>
+            <input type="email" id="correo" placeholder="ejemplo@correo.com" maxlength="100" autocomplete="email">
+
+            <label for="pais">País:</label>
+            <select id="pais" required>
+                <option value="">Seleccione un país</option>
+                <option value="Mexico">México</option>
+                <option value="USA">Estados Unidos</option>
+                <option value="Canada">Canadá</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" placeholder="Ingrese su ciudad" required maxlength="50" autocomplete="address-level2">
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" placeholder="Calle, número, colonia..." required maxlength="100" autocomplete="street-address">
+        
+            <!-- Selector de Fuente (solo para achavez) -->
+            <div id="fuenteContainer" style="display: none;">
+                <label for="fuente">Fuente:</label>
+                <select id="fuente" required>
+                    <option value="web" selected>Web</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="modulo">Módulo</option>
+                    <option value="modulo">Otros</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ContainerStep2 popout-shadow">
+        <h2>Paso 2 - Seleccione los servicios:</h2>
+        <div class="flexContainer step2-container" >
+            <div>
+        <div class="PricesTable popin-shadow">
+            <table class="pricesTable">
+                <thead>
+                    <tr>
+                        <th colspan="4">Tabla de Precios</th>
+                    </tr>
+                </thead>
+                <tbody id="pricesTableBody">
+                <tr class="classification">
+                        <th>Servicio</th>
+                        <th>Desinfección</th>
+                        <th>Lavado</th>
+                        <th>Editar</th>
+                </tr>
+                    <!-- Las filas se llenarán dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+            
+        </div>
+        <button class="btn-continue" onclick="addService()">Agregar Servicio</button>
+        </div>
+
+        <div class="DetailsContainer">
+
+        <div class="orderedServicesContainer">
+            <div class="nameContainer">
+                <h4 class="services-section-title">Servicios</h4>
+                <ol id="serviceList">
+                    <!-- Lista de servicios seleccionados -->
+                </ol>
+                
+            </div>
+            
+        </div>
+        <div class="orderedServicesButtons">
+            <button class="btn-restore" onclick="restoreServices()">Restablecer</button>
+            <h2>Total: $<span id="totalPrice">0</span></h2>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="ContainerStep3 popout-shadow">
+        <h2>Paso 3 - Define la fecha y otros detalles:</h2>
+
+        <div class="flexContainer">
+
+            <div class="detailsContainer">
+                <label for="fsolicita">Fecha de Solicitud:</label>
+                <input type="date" id="fsolicita" required>
+
+                <label for="fprogram">Fecha Programada:</label>
+                <input type="date" id="fprogram" required autocomplete="off" inputmode="none">
+
+                <label for="hora">Hora programada:</label>
+                <input type="time" id="hora" required>
+
+                <label for="operador">Operador:</label>
+                <select id="operador" required>
+                    <option value="">Cargando operadores...</option>
+                </select>
+
+                <label for="comentarios">Comentarios (opcional):</label>
+                <input type="text" id="comentarios" placeholder="Ingrese sus comentarios">
+
+                <div class="flexContainer">
+                    <button class="btn-back" onclick="Step2()">Volver</button>
+                <button class="btn-continue" onclick="submitOrder()">Enviar Orden</button>
+                </div>
+                <p class="note">NOTA: Todo trabajo está sujeto a modificación de precio por el  operador, en caso de que no se hayan  dado las medidas correctas en un inicio.</p>
+        </div>
+    </div>
+
+</div>
+
+</div></center>
+</main>
+
+<script src="../js/finisher-header.es5.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+new FinisherHeader({
+  "count": 6,
+  "size": {
+    "min": 1100,
+    "max": 1300,
+    "pulse": 0
+  },
+  "speed": {
+    "x": {
+      "min": 0.1,
+      "max": 1.0
+    },
+    "y": {
+      "min": 0.1,
+      "max": 1.0
+    }
+  },
+  "colors": {
+    "background": "#fc5f07",
+    "particles": [
+      "#fc3f04",
+      "#fccb37",
+      "#fc7536"
+    ]
+  },
+  "blending": "overlay",
+  "opacity": {
+    "center": 1,
+    "edge": 0.1
+  },
+  "skew": 0,
+  "shapes": [
+    "c"
+  ]
+});
+</script>
+
+<!-- Modal de confirmación de orden -->
+<div id="confirmationModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content confirmation-modal">
+        <h3>Confirmar Creación de Orden</h3>
+        <div class="order-preview">
+            <div class="order-number-preview">
+                <h4>Número de Orden a Generar:</h4>
+                <div class="next-order-number" id="nextOrderNumber">CWO00001</div>
+            </div>
+            <div id="confirmationOrderSummary">
+                <!-- El resumen se llenará dinámicamente -->
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeConfirmationModal()">Cancelar</button>
+            <button class="btn-confirm" onclick="confirmOrderSubmission()">Confirmar y Crear Orden</button>
+        </div>
+    </div>
+</div>
+<!-- Botón flotante de regresar -->
+<button class="btn-back-float" onclick="window.history.back()" title="Regresar a la página anterior" style="position: fixed; top: 20px; right: 30px; padding: 12px 24px; border-radius: 25px; background: linear-gradient(135deg, #fc5f07 0%, #fc3f04 100%); border: none; box-shadow: 0 4px 15px rgba(252, 95, 7, 0.4); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 9999; color: white; font-weight: 600; font-size: 14px; transition: all 0.3s ease;">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    </svg>
+    Volver
+</button>
+
+<script>
+// Efecto hover para el botón
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.btn-back-float');
+    if (btn) {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 8px 25px rgba(252, 95, 7, 0.6)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style. transform = 'translateY(0)';
+            this.style. boxShadow = '0 4px 15px rgba(252, 95, 7, 0.4)';
+        });
+    }
+});
+</script>
+</body>
+</html>

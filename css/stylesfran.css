@@ -1,0 +1,215 @@
+/* === CARD/DASHBOARD CONTAINER === */
+.franq-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 24px rgba(0,0,0,0.09);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 97vw;
+  margin: 32px auto 30px auto;
+}
+
+/* Header */
+.franq-headrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+.franq-title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.franq-title {
+  margin: 0 0 3px 0; font-size: 1.5rem; font-weight: 700; color: #111;
+}
+.franq-subtitle {
+  color: #6c6c77; font-size: 1.08rem; margin-bottom: 5px;
+}
+.franq-userinfo {
+  text-align: right;
+  font-size: 0.97rem;
+  color: #787878;
+  line-height: 1.58;
+}
+
+/* --- CONTROLES --- */
+.franq-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 30px 0 18px 0;
+  flex-wrap: wrap;
+}
+.franq-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+}
+.franq-filter label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.franq-filter select,
+.franq-filter input[type="text"] {
+  background: #f3f4f6;
+  border: 1.4px solid #e2e8f0;
+  border-radius: 7px;
+  padding: 0.69rem 1.27rem;
+  font-size: 1rem;
+}
+.franq-filter select:focus,
+.franq-filter input[type="text"]:focus {
+  border-color: #f88c2a;
+  outline: none;
+}
+.franq-btn {
+  background: linear-gradient(90deg, #F88C2A 50%, #fc5f07 100%);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 11px;
+  font-size: 1.05rem;
+  padding: 0.86em 1.85em;
+  box-shadow: 0 3px 10px rgba(252, 95, 7, 0.07);
+  margin-left: 0.44rem;
+  cursor: pointer;
+  transition: background 0.19s;
+}
+.franq-btn:hover {
+  background: linear-gradient(90deg, #fc5f07 20%, #F88C2A 100%);
+}
+
+/* --- FRANQUICIAS TABLE --- */
+.franq-tablewrap {
+  margin-top:10px;
+  margin-bottom:0;
+  overflow-x: auto;
+}
+.franq-table {
+  border-radius: 13px;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 1.03rem;
+  min-width: 880px;
+  background: #fff;
+  margin-bottom: 0;
+  box-shadow: none;
+}
+.franq-table th, .franq-table td {
+  border: none;
+  padding: 1.03rem 1.22rem;
+  font-size: 1.04rem;
+  background: #fff;
+}
+.franq-table thead {
+  background: none;
+}
+.franq-table th {
+  font-weight: bold;
+  color: #171717;
+  background: #f8f9fa;
+  border-bottom: 1.5px solid #ededed;
+  text-transform: none;
+  font-size: 1.09rem;
+  letter-spacing: 0.03em;
+}
+.franq-table tbody tr {
+  border-bottom: 1.4px solid #f3f3f3;
+  transition: background 0.17s;
+}
+.franq-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.franq-table td {
+  color: #232425;
+}
+.franq-table td:first-child {
+  font-weight: 700;
+  color: #222;
+  font-size: 1.09rem;
+  letter-spacing: -0.4px;
+}
+.franq-table tr:hover {
+  background: #fcfbf5;
+}
+.franq-table .franq-actioncell {
+  width: 46px;
+  text-align: center;
+  color: #a6a6a6;
+}
+.franq-table .franq-actbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px 8px;
+  font-size: 1.5rem;
+  color: #a6a6a6;
+  margin-left: 2px;
+}
+.franq-table .franq-actbtn:hover {
+  color: #f88c2a;
+}
+
+/* Info y paginador */
+.franq-count {
+  margin: 13px 0 7px 0;
+  color: #868686;
+  font-size: 1.01rem;
+}
+.franq-pagination {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: flex-end;
+  margin: 13px 0 3px 0;
+}
+.franq-pagination button, .franq-pagination .franq-pagebtn {
+  background: #f7f8fa;
+  border: none;
+  border-radius: 7px;
+  padding: 0.45em 1.09em;
+  font-size: 1.00rem;
+  color: #8d8d8d;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.franq-pagination .franq-pagebtn.active, .franq-pagination .franq-pagebtn:active {
+  background: #fc5f07;
+  color: #fff;
+}
+.franq-pagination button:hover {
+  background: #f88c2a;
+  color: #fff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1000px) {
+  .franq-card { padding: 1.1rem 0.5rem; }
+  .franq-table { min-width: unset; font-size: 0.98rem; }
+}
+@media (max-width: 600px) {
+  .franq-card { padding: 0.5rem 0.2rem; }
+  .franq-table { font-size: 0.97rem; }
+}
+.btn-actions {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pagination-btn {
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-btn.active {
+  background: orange;
+  color: white;
+}
